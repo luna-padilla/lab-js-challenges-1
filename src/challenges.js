@@ -13,7 +13,7 @@ const repeatedWords = [
   "matter",
 ];
 
-function howManyTimes(word, wordToSearch) {
+function howManyTimes(repeatedWords, wordToSearch) {
   let count = 0;
   for (let i = 0; i < repeatedWords.length; i++) {
     const word = repeatedWords[i];
@@ -26,7 +26,18 @@ function howManyTimes(word, wordToSearch) {
 console.log(howManyTimes("truth","truth")) ;
 
 // Iteration 2 | Number Sequence
-function createSequence() {}
+
+function createSequence(n) {
+  let sequence = [];
+  for (let i = 0; i <= n; i++) {
+    if(n>0){
+      
+    sequence.push(i);
+  }
+  }
+  return sequence;
+}
+console.log(createSequence(7));
 
 // Iteration 3 | Multiply for Each
 const numbers = [1, 2, 5, 10, 13, 50];

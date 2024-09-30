@@ -23,17 +23,16 @@ function howManyTimes(repeatedWords, wordToSearch) {
   }
   return count;
 }
-console.log(howManyTimes("truth","truth")) ;
+console.log(howManyTimes(repeatedWords, "matter"));
 
 // Iteration 2 | Number Sequence
 
 function createSequence(n) {
-  let sequence = [];
+  const sequence = [];
   for (let i = 0; i <= n; i++) {
-    if(n>0){
-      
-    sequence.push(i);
-  }
+    if (n > 0) {
+      sequence.push(i);
+    }
   }
   return sequence;
 }
@@ -42,13 +41,44 @@ console.log(createSequence(7));
 // Iteration 3 | Multiply for Each
 const numbers = [1, 2, 5, 10, 13, 50];
 
-function multiplyBy() {}
+function multiplyBy(numbers, multiplier) {
+  const result = [];
+
+  for (let i = 0; i < numbers.length; i++) {
+    const number = numbers[i];
+    result.push(number * multiplier);
+  }
+  return result;
+}
+console.log(multiplyBy(numbers, 3));
+// with for Each
 
 // Iteration 4 | Filter Out
 const original = ["cat", "dog", "fish", "bird", "cat", "fish"];
 const toRemove = ["cat", "dog"];
 
-function filterOut() {}
+function filterOut(original, toRemove) {
+  if (original.length === 0) {
+    return null;
+  }
+  if (toRemove.length === 0) {
+    return original;
+  }
+  let find;
+  const filtered = [];
+  for (let i = 0; i < original.length; i++) {
+    find = false;
+    for (let j = 0; j < toRemove.length; j++) {
+      if (original[i] === toRemove[j]) {
+        find = true;
+      }
+    }
+    if (!find) {
+      filtered.push(original[i]);
+    }
+  }
+  return filtered;
+}
 
 // Iteration 5 | Unique Arrays
 const duplicateWords = [

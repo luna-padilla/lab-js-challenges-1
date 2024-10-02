@@ -108,19 +108,20 @@ const duplicateWords = [
 ];
 
 function uniquifyArray(duplicateWords) {
-  let repeat;
-  const noDuplicateWords = [];
   if (duplicateWords.length === 0) {
     return null;
   }
+  let repeat;
+  const noDuplicateWords = [];
   noDuplicateWords.push(duplicateWords[0]);
   for (let i = 0; i < duplicateWords.length; i++) {
     const word = duplicateWords[i];
     repeat = false;
     for (let j = 0; j < noDuplicateWords.length; j++) {
-      const copyWord = duplicateWords[j];
+      const copyWord = noDuplicateWords[j];
       if (word === copyWord) {
         repeat = true;
+        break;
       }
     }
     if (!repeat) {
@@ -199,21 +200,30 @@ const matrix = [
 
 function greatestProduct(matrix) {
   let max = 0;
-  let product = 1;
+    let productH = 1;
+    let productV = 1;
+    
+    for (let a = 0; a < matrix[0].length; a++) {
 
-  for (let a = 0; a < matrix.length; a++) {
-    for (let i = 0; i < matrix[a].length - 3; i++) {
-      product = 1;
-      for (let j = i; j <= i + 3; j++) {
-        product *= matrix[a][j];
-      }
-      // console.log(product)
-      console.log("------");
-      if (product > max) {
-        max = product;
-      }
+        for (let i = 0; i < matrix[a].length - 3; i++) {
+            productH = 1;
+            productV = 1;
+
+            for (let j = i; j <= i + 3; j++) {
+                // horizontal
+                productH *= matrix[a][j];
+                // vertical
+                productV *= matrix[j][a];
+            }
+
+            if (productH > max) {
+                max = productH
+            }
+            if (productV > max) {
+                max = productV
+            }
+        }
     }
-  }
-  console.log("máximo", max);
-  return max;
+   
+    return max;
 }

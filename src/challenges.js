@@ -41,18 +41,30 @@ console.log(createSequence(7));
 // Iteration 3 | Multiply for Each
 const numbers = [1, 2, 5, 10, 13, 50];
 
-function multiplyBy(numbers, multiplier) {
-  const result = [];
+// function multiplyBy(numbers, multiplier) {
+//   const result = [];
 
-  for (let i = 0; i < numbers.length; i++) {
-    const number = numbers[i];
-    result.push(number * multiplier);
+//   for (let i = 0; i < numbers.length; i++) {
+//     const number = numbers[i];
+//     result.push(number * multiplier);
+//   }
+//   return result;
+// }
+// console.log(multiplyBy(numbers, 3));
+// with for Each
+function multiplyBy(numbers, multiplier) {
+  if (numbers.length === 0) {
+    return [];
   }
+  const result = [];
+  numbers.forEach((number) => {
+    result.push(number * multiplier);
+  });
+
+  console.log(`${result}`);
   return result;
 }
 console.log(multiplyBy(numbers, 3));
-// with for Each
-
 // Iteration 4 | Filter Out
 const original = ["cat", "dog", "fish", "bird", "cat", "fish"];
 const toRemove = ["cat", "dog"];
@@ -95,7 +107,29 @@ const duplicateWords = [
   "bring",
 ];
 
-function uniquifyArray() {}
+function uniquifyArray(duplicateWords) {
+  let repeat;
+  const noDuplicateWords = [];
+  if (duplicateWords.length === 0) {
+    return null;
+  }
+  noDuplicateWords.push(duplicateWords[0]);
+  for (let i = 0; i < duplicateWords.length; i++) {
+    const word = duplicateWords[i];
+    repeat = false;
+    for (let j = 0; j < noDuplicateWords.length; j++) {
+      const copyWord = duplicateWords[j];
+      if (word === copyWord) {
+        repeat = true;
+      }
+    }
+    if (!repeat) {
+      noDuplicateWords.push(word);
+    }
+  }
+  return noDuplicateWords;
+}
+console.log(uniquifyArray(duplicateWords));
 
 // Bonus: Iteration 6 | Product of Adjacent Numbers
 const matrix = [
@@ -163,4 +197,23 @@ const matrix = [
   ],
 ];
 
-function greatestProduct() {}
+function greatestProduct(matrix) {
+  let max = 0;
+  let product = 1;
+
+  for (let a = 0; a < matrix.length; a++) {
+    for (let i = 0; i < matrix[a].length - 3; i++) {
+      product = 1;
+      for (let j = i; j <= i + 3; j++) {
+        product *= matrix[a][j];
+      }
+      // console.log(product)
+      console.log("------");
+      if (product > max) {
+        max = product;
+      }
+    }
+  }
+  console.log("máximo", max);
+  return max;
+}
